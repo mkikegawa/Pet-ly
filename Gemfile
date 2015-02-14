@@ -2,10 +2,7 @@ source 'https://rubygems.org'
 
 
 
-gem 'bootstrap-sass', '~> 3.2.0'
-gem 'twitter-bootstrap-rails'
-gem 'autoprefixer-rails'
-gem 'pry'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
 # Use postgresql as the database for Active Record
@@ -27,6 +24,12 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
+gem 'httparty'
+gem 'bootstrap-sass', '~> 3.2.0'
+gem 'twitter-bootstrap-rails'
+gem 'autoprefixer-rails'
+gem 'pry'
+gem 'libxml-ruby'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
