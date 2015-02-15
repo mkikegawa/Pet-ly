@@ -28,7 +28,6 @@ gem 'httparty'
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'twitter-bootstrap-rails'
 gem 'autoprefixer-rails'
-gem 'pry'
 gem 'libxml-ruby'
 
 # Use ActiveModel has_secure_password
@@ -42,12 +41,21 @@ gem 'bcrypt', '~> 3.1.7'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug'
+  # gem 'byebug'
 
   # Access an IRB console on exception pages or by using <%= console %> in views
-  gem 'web-console', '~> 2.0'
+  # gem 'web-console', '~> 2.0'
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
+  # gem 'spring'
+  
+  gem 'rspec-rails', '~> 3.0'
+  gem 'pry'
 end
+
+group :test do 
+  gem 'selenium-webdriver', '2.35.1'
+  gem 'capybara', '2.2.0'
+end
+
 
