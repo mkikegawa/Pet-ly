@@ -5,3 +5,5 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+users = User.create([{ name: "Martin Kikegawa",  profile: "I like grey kittens" }, 
+    { name: "Marcy Criner", profile: "I like calico cats." }])

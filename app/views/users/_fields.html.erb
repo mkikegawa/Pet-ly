@@ -1,6 +1,6 @@
-<%= form_for(@user) do | u |
-  <render 'shared/error_messages', object: u.object %>
-
+<%= form_for(@user) do | u | %>
+  <% render 'shared/error_messages', object: u.object %>
+  
   <%= u.label :name %>
   <%= u.text_field :name, autofocus: true %>
 
@@ -11,3 +11,6 @@
   <br />
   <%= u.submit 'Create' %>
 <% end %>
+
+
+ 
