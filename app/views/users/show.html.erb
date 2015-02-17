@@ -4,5 +4,16 @@
 <p><%= @user.profile %></p>
 
 
+
+<% pets = Pet.search %>
+<p><% pets['pets']['pet'].each do |pet| %>
+  <%= "#{ pet['name'] }" %><br />
+  <img src="<%= pet['pic1'] %>" /><br />
+  <%= link_to "Pet url", pet['petUrl'] %>
+  <br />
+  <% end %>
+</p>
+
+
 <%= link_to "Edit this User", edit_user_path(@user) %>
 <%= link_to "Back to the list", users_path %>
