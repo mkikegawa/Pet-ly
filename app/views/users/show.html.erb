@@ -1,2 +1,8 @@
 <% provide(:title, @user.name) %>
 <h1><%= @user.name %></h1>
+
+<p><%= @user.profile %></p>
+
+
+<%= link_to "Edit this User", edit_user_path(@user) %>
+<%= link_to "Back to the list", users_path %>

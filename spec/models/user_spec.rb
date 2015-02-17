@@ -1,7 +1,9 @@
  require 'rails_helper'
 
 describe User do
-  let(:user) { User.new(name: 'Martin Kikegawa', profile: 'I want a grey kitten') }
+  let(:user) { 
+    User.new(name: 'Martin Kikegawa', 
+          profile: 'I want a grey kitten') }
 
   subject { user }
 

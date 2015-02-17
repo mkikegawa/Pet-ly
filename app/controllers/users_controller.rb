@@ -35,7 +35,7 @@ class UsersController < ApplicationController
     end
   end
 
-  def destroy
+  def delete
     @user = User.find(params[:id])
     @user.destroy
     flash[:success] = 'User deleted.'
@@ -47,4 +47,5 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:name, :profile)
   end
+
 end
