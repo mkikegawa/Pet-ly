@@ -4,16 +4,21 @@
 <p><%= @user.profile %></p>
 
 
-
-<% pets = Pet.search %>
-<p><% pets['pets']['pet'].each do |pet| %>
+<div>
+<%= form_for @pet, url: { controller: 'pets', action: 'create' } do %>  
+  <%= hidden_field_tag(:user, value: @user) %>
+  <% pets = Pet.search %>
+  <% pets['pets']['pet'].each do |pet| %>
   <%= "#{ pet['name'] }" %><br />
   <img src="<%= pet['pic1'] %>" /><br />
-  <%= link_to "Pet url", pet['petUrl'] %>
-  <br />
+    <%= check_box_tag "animalID#{ pet['animalID']}", pet['animalID'] %>
+    <br />
   <% end %>
-</p>
-
+    <br />
+      <%= submit_tag("Save selected matches to Favorites") %>
+<% end %>
+</div>
 
 <%= link_to "Edit this User", edit_user_path(@user) %>
 <%= link_to "Back to the list", users_path %>
+393710

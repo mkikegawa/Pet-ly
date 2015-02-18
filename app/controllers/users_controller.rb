@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  helper PetsHelper 
 
   def index 
     @users = User.all
@@ -6,6 +7,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @pet = Pet.new
   end
 
   def new
@@ -35,7 +37,7 @@ class UsersController < ApplicationController
     end
   end
 
-  def delete
+  def destroy
     @user = User.find(params[:id])
     @user.destroy
     flash[:success] = 'User deleted.'
@@ -49,3 +51,20 @@ class UsersController < ApplicationController
   end
 
 end
+
+  def pet_params(pet_result)
+    pet_result.require(:pet).permit(
+        name:        pet_result['name'], 
+        summary:     pet_result['summary'], 
+        species:     pet_result['species'], 
+        breed:       pet_result['breed'], 
+        sex:         pet_result['sex'], 
+        age:         pet_result['age'], 
+        color:       pet_result['color'], 
+        description: pet_result['description'], 
+        animalID:    pet_result['animalID'],
+        orgID:       pet_result['orgID'], 
+        videoUrl1:   pet_result['videoUrl1']
+    )
+
+  end

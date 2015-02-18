@@ -1,13 +1,15 @@
 class Pet < ActiveRecord::Base
 
-  has_many :userpet
-  has_many :user, through: :userpet
+  has_many :user_pets, dependent: :destroy
+  has_many :user, through: :user_pets
+  validates_uniqueness_of :animalID
 
   def self.search(term = nil)
-    term ||= 'type=animals&limit=10'
-    pet = HTTParty.get "https://api.rescuegroups.org/rest/?#{ api_key }#{ term }"
-    
+    term ||= 'type=animals&limit=20&page=2'
+    HTTParty.get "https://api.rescuegroups.org/rest/?#{ api_key }#{ term }"  
   end
+
+
 
   private
 
