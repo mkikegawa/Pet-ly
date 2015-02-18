@@ -6,7 +6,7 @@
 
 <div>
 <%= form_for @pet, url: { controller: 'pets', action: 'create' } do %>  
-  <%= hidden_field_tag(:user, value: @user) %>
+  <%= hidden_field_tag(:user, value: @user.id) %>
   <% pets = Pet.search %>
   <% pets['pets']['pet'].each do |pet| %>
   <%= "#{ pet['name'] }" %><br />

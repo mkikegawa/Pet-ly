@@ -14,6 +14,7 @@ class PetsController < ApplicationController
   end
 
   def create
+    id = 
     pet_result = Pet.search("type=animals&limit=100")['pets']['pet']
     id_select = params.select do | k, v |
       k.slice('animalID') == 'animalID'
@@ -37,9 +38,9 @@ class PetsController < ApplicationController
           orgID:       pet['orgID'], 
           videoUrl1:   pet['videoUrl1']
       }
-      @pet = Pet.new(pet_parsed)
+      @pet = User.find(params['user'].to_i).pet.create(pet_parsed)
     end
-      redirect_to user_path(params['user'][:value].id), notice: 'Pet was successfully created.'
+      redirect_to user_path(params['user']['value'].to_i), notice: 'Pet was successfully created.'
   end
  
   def edit
