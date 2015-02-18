@@ -38,9 +38,9 @@ class PetsController < ApplicationController
           orgID:       pet['orgID'], 
           videoUrl1:   pet['videoUrl1']
       }
-      @pet = User.find(params['user'].to_i).pet.create(pet_parsed)
+      @pet = User.find(params['user'].to_i).pets.create(pet_parsed)
     end
-      redirect_to user_path(params['user']['value'].to_i), notice: 'Pet was successfully created.'
+      redirect_to user_path(params['user'].to_i), notice: 'Pet was successfully created.'
   end
  
   def edit

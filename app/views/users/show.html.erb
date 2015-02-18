@@ -6,7 +6,7 @@
 
 <div>
 <%= form_for @pet, url: { controller: 'pets', action: 'create' } do %>  
-  <%= hidden_field_tag(:user, value: @user.id) %>
+  <%= hidden_field_tag(:user, @user.id) %>
   <% pets = Pet.search %>
   <% pets['pets']['pet'].each do |pet| %>
   <%= "#{ pet['name'] }" %><br />
@@ -21,4 +21,4 @@
 
 <%= link_to "Edit this User", edit_user_path(@user) %>
 <%= link_to "Back to the list", users_path %>
-393710
+
