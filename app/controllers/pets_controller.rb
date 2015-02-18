@@ -18,7 +18,7 @@ class PetsController < ApplicationController
     id_select = params.select do | k, v |
       k.slice('animalID') == 'animalID'
     end
-    result = pet_result.map do |pet| 
+    result = pet_result.select do |pet| 
       id_select.each_value do | value |
         pet['animalID'] == value
       end
