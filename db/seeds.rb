@@ -8,6 +8,6 @@
 users = User.create([{ name: "Martin Kikegawa",  profile: "I like grey kittens" }, 
     { name: "Marcy Criner", profile: "I like calico cats." }])
 
-pets = Pet.create([{ name: 'Squeaks', species: 'cat', breed: 'Domestic Shorthair', sex: 'Female', age: '3', color: 'grey', external_pet_id: 12345 },
-    { name: 'Josie', species: 'cat', breed: 'Persian', sex: 'Male', age: '9', color: 'black', external_pet_id: 54321 },
-    { name: 'Diesel', species: 'dog', breed: 'hound', sex: 'Male', age: '2', color: 'brown', external_pet_id: 34521 }])
+pets = Pet.create([{ name: 'Squeaks', species: 'cat', breed: 'Domestic Shorthair', sex: 'Female', age: '3', color: 'grey', animalID: 12345 },
+    { name: 'Josie', species: 'cat', breed: 'Persian', sex: 'Male', age: '9', color: 'black', animalID: 54321 },
+    { name: 'Diesel', species: 'dog', breed: 'hound', sex: 'Male', age: '2', color: 'brown', animalID: 34521 }])
