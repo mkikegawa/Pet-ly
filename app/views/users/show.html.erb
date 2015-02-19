@@ -6,14 +6,16 @@
 <p><%= "You have #{ User.find(@user).pets.length } Favorites" %></p>
 <% User.find(@user.id).pets.each do | pet_match | %>
   <p>
-    <%= "#{ pet_match.name }" %><br />
+    <%= link_to pet_match.name, pet_path(pet_match.id) %>
     <%= "Favorited by #{ Pet.find(pet_match.id).user.length } Users" %><br />
     <%= link_to "Remove #{ pet_match.name } from Favorites", pet_match, method: :delete,
       data: { confirm: 'Are you sure?' } %>
   </p>
 
 <% end %>
-
-<%= link_to "Edit this User", edit_user_path(@user) %><br />
+<% if current_user?(@user) %>
+  <%= link_to "Edit this User", edit_user_path(@user) %>
+  <br />
+<% end %>
 <%= link_to "Back to the list", users_path %>
 

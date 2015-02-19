@@ -1,49 +1,15 @@
-<%= form_for(@pet) do | p | %>
-  <% render 'shared/error_messages', object: p.object %>
-  
-  <%= p.label :name %>
-  <%= p.text_field :name, autofocus: true %>
-
-  <br />
-  <%= p.label :summary %>
-  <%= p.text_field :summary %>
-
-  <br />
-  <%= p.label :species %>
-  <%= p.text_field :species %>
-  
-  <br /> 
-  <%= p.label :breed %>
-  <%= p.text_field :breed %>
-
-  <br />
-  <%= p.label :gender %>
-  <%= p.text_field :sex %>
-
-  <br />
-  <%= p.label :age %>
-  <%= p.text_field :age %>
-  
-  <br /> 
-  <%= p.label :color %>
-  <%= p.text_field :color %>
-   
-  <br />
-  <%= p.label :description %>
-  <%= p.text_field :description %>
-  
-  <br /> 
-  <%= p.label :animalID %>
-  <%= p.text_field :animalID %>
-
-  <br />
-  <%= p.label :orgID %>
-  <%= p.text_field :orgID %>
-
-  <br />
-  <%= p.label :videoUrl1 %>
-  <%= p.text_field :videoUrl1 %>
-
-  <br />
-  <%= p.submit 'Create' %>
+<div>
+<%= form_for @pet, url: { controller: 'pets', action: 'create' } do %>  
+  <%= hidden_field_tag(:user, @user.id) %>
+  <% pets = Pet.search %>
+  <% pets['pets']['pet'].each do |pet| %>
+  <%= "#{ pet['name'] }" %><br />
+  <img src="<%= pet['pic1'] %>" /><br />
+    <%= check_box_tag "animalID#{ pet['animalID']}", pet['animalID'] %>
+    <br />
+    <p><%= "Is on #{ Pet.find(pet['id']).user.length } other favorite's list." %></p>
+  <% end %>
+    <br />
+      <%= submit_tag("Save selected matches to Favorites") %>
 <% end %>
+</div>

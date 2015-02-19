@@ -9,8 +9,6 @@ class Pet < ActiveRecord::Base
     HTTParty.get "https://api.rescuegroups.org/rest/?#{ api_key }#{ term }"  
   end
 
-
-
   private
 
   def self.api_key
