@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150217183519) do
+ActiveRecord::Schema.define(version: 20150219044105) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,15 @@ ActiveRecord::Schema.define(version: 20150217183519) do
     t.integer  "animalID"
     t.integer  "orgID"
     t.string   "videoUrl1"
+    t.string   "pic1"
+    t.string   "pictmn1"
+    t.string   "pic2"
+    t.string   "pictmn2"
+    t.string   "pic3"
+    t.string   "pictmn3"
+    t.string   "pic4"
+    t.string   "pictmn4"
+    t.string   "video1"
   end
 
   create_table "user_pets", force: :cascade do |t|

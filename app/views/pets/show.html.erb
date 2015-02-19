@@ -13,6 +13,16 @@
   <li><%= "animalID:    #{ @pet.animalID }"  %></li>
   <li><%= "orgID:       #{ @pet.orgID }"  %></li>
   <li><%= "videoUrl1:   #{ @pet.videoUrl1 }"  %></li>
+  <li><%= "video1:      #{ @pet.video1 }"  %></li>
+  <li><%= "pic1:        #{ @pet.pic1 }"  %></li>
+  <li><%= "pictmn1:     #{ @pet.pictmn1 }"  %></li>
+  <li><%= "pic2:        #{ @pet.pic2 }"  %></li>
+  <li><%= "pictmn2:     #{ @pet.pictmn2 }"  %></li>
+  <li><%= "pic3:        #{ @pet.pic3 }"  %></li>
+  <li><%= "pictmn3:     #{ @pet.pictmn3 }"  %></li>
+  <li><%= "pic4:        #{ @pet.pic4 }"  %></li>
+  <li><%= "pictmn4:     #{ @pet.pictmn4 }"  %></li>
+
   <li><%= "Favorited by #{ Pet.find(@pet.id).user.length } Users" %></li>
 </ul>
 <%= link_to "Back to the list", pets_path %>

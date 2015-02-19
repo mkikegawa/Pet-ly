@@ -36,7 +36,16 @@ class PetsController < ApplicationController
           description: pet['description'], 
           animalID:    pet['animalID'],
           orgID:       pet['orgID'], 
-          videoUrl1:   pet['videoUrl1']
+          videoUrl1:   pet['videoUrl1'],
+          video1:      pet['video1'], 
+          pic1:        pet['pic1'],
+          pictmn1:     pet['pictmn1'],
+          pic2:        pet['pic2'],
+          pictmn2:     pet['pictmn2'],  
+          pic3:        pet['pic3'],
+          pictmn3:     pet['pictmn3'],  
+          pic4:        pet['pic4'],
+          pictmn4:     pet['pictmn4']  
       }
       @pet = User.find(params['user'].to_i).pets.create(pet_parsed)
     end
