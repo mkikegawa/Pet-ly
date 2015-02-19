@@ -64,11 +64,4 @@ class PetsController < ApplicationController
     redirect_to pets_path
   end
 
-  # private
-
-  # def pet_params(pet_result)
-  #   pet_result.require(:pet).permit(:name, :summary, :species, :breed, 
-  #     :sex, :age, :color, :description, :animalID, :orgID, :videoUrl1)
-  # end
-
 end

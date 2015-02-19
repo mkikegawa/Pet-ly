@@ -3,22 +3,17 @@
 
 <p><%= @user.profile %></p>
 
+<p><%= "You have #{ User.find(@user).pets.length } Favorites" %></p>
+<% User.find(@user.id).pets.each do | pet_match | %>
+  <p>
+    <%= "#{ pet_match.name }" %><br />
+    <%= "Favorited by #{ Pet.find(pet_match.id).user.length } Users" %><br />
+    <%= link_to "Remove #{ pet_match.name } from Favorites", pet_match, method: :delete,
+      data: { confirm: 'Are you sure?' } %>
+  </p>
 
-<div>
-<%= form_for @pet, url: { controller: 'pets', action: 'create' } do %>  
-  <%= hidden_field_tag(:user, @user.id) %>
-  <% pets = Pet.search %>
-  <% pets['pets']['pet'].each do |pet| %>
-  <%= "#{ pet['name'] }" %><br />
-  <img src="<%= pet['pic1'] %>" /><br />
-    <%= check_box_tag "animalID#{ pet['animalID']}", pet['animalID'] %>
-    <br />
-  <% end %>
-    <br />
-      <%= submit_tag("Save selected matches to Favorites") %>
 <% end %>
-</div>
 
-<%= link_to "Edit this User", edit_user_path(@user) %>
+<%= link_to "Edit this User", edit_user_path(@user) %><br />
 <%= link_to "Back to the list", users_path %>
 

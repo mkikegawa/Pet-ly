@@ -1,3 +1,21 @@
 <% provide(:title, 'Show Pet') %>
 <h1></h1>
 
+<ul>
+  <li><%= "name: #{ @pet.name }"  %></li>
+  <li><%= "summary:     #{ @pet.summary }"  %></li>
+  <li><%= "species      #{ @pet.species }"  %></li>
+  <li><%= "breed:       #{ @pet.breed }"  %></li>
+  <li><%= "gender:      #{ @pet.sex }"  %></li>
+  <li><%= "age:         #{ @pet.age }"  %></li>
+  <li><%= "color:       #{ @pet.color }"  %></li>
+  <li><%= "description: #{ @pet.description }"  %></li>
+  <li><%= "animalID:    #{ @pet.animalID }"  %></li>
+  <li><%= "orgID:       #{ @pet.orgID }"  %></li>
+  <li><%= "videoUrl1:   #{ @pet.videoUrl1 }"  %></li>
+  <li><%= "Favorited by #{ Pet.find(@pet.id).user.length } Users" %></li>
+</ul>
+<%= link_to "Back to the list", pets_path %>
+<br />
+<%= link_to 'delete', @pet, method: :delete,
+      data: { confirm: 'Are you sure?' } %>
