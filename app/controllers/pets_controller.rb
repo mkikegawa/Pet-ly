@@ -1,19 +1,25 @@
 class PetsController < ApplicationController
+  before_action :set_pet, only:          [:show, :edit, :update, :destroy]
+  before_action :signed_in_user, except: [:index, :show]
+  before_action :correct_user,   except: [:new, :create, :index, :show]
   
   def index
+    @active = 'pets'
     @pets = Pet.all
   end
 
   def show
-    @pet = Pet.find(params['id'])
+    @active = 'pets'
   end
 
   def new
+    @active ='pets'
     @pet = Pet.new
     @pet_search = Pet.search("type=animals&limit=10")
   end
 
   def create
+    @active = 'pets'
     pet_result = Pet.search("type=animals&limit=30")['pets']['pet']
     id_select = params.select do | k, v |
       k.slice('animalID') == 'animalID'
@@ -45,17 +51,16 @@ class PetsController < ApplicationController
           pictmn4:     pet.first['pictmn4']  
       }
       Pet.create(pet_parsed)
-      @pet = User.find(current_user.id).pets.create(pet_parsed)
-      end
-      redirect_to user_path(current_user.id), notice: 'Pet was successfully created.'
+      @pet = User.find_by(current_user[:id]).pet.create(pet_parsed)
+    end
+    redirect_to user_path(@current_user[:id]), notice: 'Pet was successfully created.'
   end
  
   def edit
-    @pet = Pet.find(params[:id])
+    @active = 'pets'
   end
 
   def update
-    @pet = Pet.find(params[:id])
     if @pet.update_attributes(pet_params)
       flash[:success] = 'Pet updated.'
       redirect_to pets_path(@pet.id)
@@ -65,11 +70,23 @@ class PetsController < ApplicationController
   end
 
   def destroy
-    @pet = Pet.find(params[:id])
     @pet.destroy
     flash[:success] = 'Pet deleted.'
     redirect_to pets_path
   end
+
+  private
+
+  def set_pet
+    @pet = Pet.find(params[:id])
+  end
+
+  def correct_user
+    unless current_user(@pet.user) || current_user.admin?
+      redirect_to user_path(current_user)
+    end
+  end
+
 
 end
 
