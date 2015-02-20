@@ -10,12 +10,11 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @pet  = Pet.new
   end
 
   def new
     @user = User.new
-    @pet  = Pet.new
+    
   end
 
   def create 

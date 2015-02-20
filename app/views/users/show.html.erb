@@ -13,9 +13,13 @@
   </p>
 
 <% end %>
+<br />
+<%= link_to 'Find Favorites Pets', new_pet_path %>
+<br />
 <% if current_user?(@user) %>
   <%= link_to "Edit this User", edit_user_path(@user) %>
   <br />
 <% end %>
+
 <%= link_to "Back to the list", users_path %>
 
