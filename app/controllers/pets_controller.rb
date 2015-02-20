@@ -50,10 +50,9 @@ class PetsController < ApplicationController
           pic4:        pet.first['pic4'],
           pictmn4:     pet.first['pictmn4']  
       }
-      Pet.create(pet_parsed)
-      @pet = User.find_by(current_user[:id]).pet.create(pet_parsed)
+      @pet = User.find(@current_user.id).pets.create(pet_parsed)
     end
-    redirect_to user_path(@current_user[:id]), notice: 'Pet was successfully created.'
+    redirect_to user_path(@current_user.id), notice: 'Pet was successfully created.'
   end
  
   def edit
@@ -82,7 +81,7 @@ class PetsController < ApplicationController
   end
 
   def correct_user
-    unless current_user(@pet.user) || current_user.admin?
+    unless current_user?(@pet.user) || current_user.admin?
       redirect_to user_path(current_user)
     end
   end

@@ -5,7 +5,7 @@
   <img src="<%= pet['pic1'] %>" /><br />
     <%= check_box_tag "animalID#{ pet['animalID']}", pet['animalID'] %>
     <br />
-    <p><%= "Is on { Pet.find(pet['id']).user.length } other favorite's list." %></p>
+    <p><%= "Is on #{ Pet.num_of_matches(pet) } other favorite's list." %></p>
   <% end %>
     <br />
       <%= submit_tag("Save selected matches to Favorites") %>

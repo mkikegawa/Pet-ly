@@ -15,6 +15,11 @@ class Pet < ActiveRecord::Base
   'key=w7sqjb4R&' 
   end 
 
+  def self.num_of_matches(pet)
+    result = find_by(animalID: pet['animalID'])
+    result ? result.user.length : 0
+  end
+
 end
 
 
