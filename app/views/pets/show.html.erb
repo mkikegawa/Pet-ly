@@ -23,7 +23,7 @@
   <li><%= "pic4:        #{ @pet.pic4 }"  %></li>
   <li><%= "pictmn4:     #{ @pet.pictmn4 }"  %></li>
 
-  <li><%= "Favorited by #{ Pet.find(@pet.id).user.length } Users" %></li>
+  <li><%= "Favorited by #{ Pet.find(@pet.id).users.length } Users" %></li>
 </ul>
 <%= link_to "Back to the list", pets_path %>
 <br />

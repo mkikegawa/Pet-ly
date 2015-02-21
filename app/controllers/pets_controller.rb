@@ -28,6 +28,9 @@ class PetsController < ApplicationController
       pet = pet_result.select do | result |
        result['animalID'] == v
       end
+      if Pet.exists?(animalID: pet.first['animalID'])
+        UserPet.find_or_create_by(user_id: @current_user.id, pet_id: Pet.map_animalID_to_pet_id(pet))  
+      else 
       pet_parsed = {
           name:        pet.first['name'], 
           summary:     pet.first['summary'], 
@@ -50,9 +53,10 @@ class PetsController < ApplicationController
           pic4:        pet.first['pic4'],
           pictmn4:     pet.first['pictmn4']  
       }
-      @pet = User.find(@current_user.id).pets.create(pet_parsed)
+        @pet = User.find(@current_user.id).pets.create(pet_parsed)
+      end
     end
-    redirect_to user_path(@current_user.id), notice: 'Pet was successfully created.'
+    redirect_to user_path(@current_user.id), notice: 'Pet Matches are successfully recorded.'
   end
  
   def edit
@@ -81,7 +85,7 @@ class PetsController < ApplicationController
   end
 
   def correct_user
-    unless current_user?(@pet.user) || current_user.admin?
+    unless current_user?(@pet.users) || current_user.admin?
       redirect_to user_path(current_user)
     end
   end

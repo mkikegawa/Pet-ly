@@ -7,7 +7,7 @@
 <% User.find(@user.id).pets.each do | pet_match | %>
   <p>
     <%= link_to pet_match.name, pet_path(pet_match.id) %>
-    <%= "Favorited by #{ Pet.find(pet_match.id).user.length } Users" %><br />
+    <%= "Favorited by #{ Pet.find(pet_match.id).users.length } Users" %><br />
     <%= link_to "Remove #{ pet_match.name } from Favorites", pet_match, method: :delete,
       data: { confirm: 'Are you sure?' } %>
   </p>
