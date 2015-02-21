@@ -2,13 +2,13 @@
 <h1>Pet Index</h1>
 
 <ul>
-  <% @pets.each do | pet | %>
+  <% @pet.each do | pet | %>
     <li>
     <%= image_tag pet.pictmn1 %>  
     <%= link_to pet.name, pet_path(pet.id) %>
     <%= "  Species: #{ pet.species.capitalize }" %>
     <%= "  Matches: #{ Pet.num_of_matches(pet) }  " %>
-        <% if current_user?(current_user) && current_user.admin? %>
+    <% if current_user && current_user.admin? %>
       <%= link_to 'delete', pet, method: :delete,
       data: { confirm: 'Are you sure?' } %>
     <% end %>

@@ -5,7 +5,7 @@ class PetsController < ApplicationController
   
   def index
     @active = 'pets'
-    @pets = Pet.all
+    @pet = Pet.all
   end
 
   def show
@@ -29,7 +29,7 @@ class PetsController < ApplicationController
        result['animalID'] == v
       end
       if Pet.exists?(animalID: pet.first['animalID'])
-        UserPet.find_or_create_by(user_id: @current_user.id, pet_id: Pet.map_animalID_to_pet_id(pet))  
+        UserPet.find_or_create_by(user_id: @current_user.id, pet_id: map_animalID_to_pet_id(pet))  
       else 
       pet_parsed = {
           name:        pet.first['name'], 
@@ -75,6 +75,11 @@ class PetsController < ApplicationController
   def destroy
     @pet.destroy
     flash[:success] = 'Pet deleted.'
+    redirect_to pets_path
+
+  def destroy_match
+    match_with_user(@pet).destroy
+    flash[:success] = 'Favorite deleted'
     redirect_to pets_path
   end
 

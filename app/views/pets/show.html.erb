@@ -1,15 +1,26 @@
 <% provide(:title, 'Show Pet') %>
-<h1></h1>
+<h1><%= @pet.name %></h1>
+<h3><%= "Favorited by #{ Pet.find(@pet.id).users.length } Users" %></h3>
 
+<% if @pet.video1 %>
+  <%= "video1 : #{ @pet.video1 }"%>
+<% elsif @pet.videoUrl1 %>
+  <%= "videoUrl1 : #{ @pet.videoUrl1 }"%>
+<% else @pet.pic1 %>
+  <%= "pic1 : #{ @pet.pic1 }"%>
+  <br />
+  <%= image_tag(@pet.pic1) %>
+<% end %>
+<div>
+<%= h@pet.description.html_safe  %>
+</div>
 <ul>
-  <li><%= "name: #{ @pet.name }"  %></li>
   <li><%= "summary:     #{ @pet.summary }"  %></li>
   <li><%= "species      #{ @pet.species }"  %></li>
   <li><%= "breed:       #{ @pet.breed }"  %></li>
   <li><%= "gender:      #{ @pet.sex }"  %></li>
   <li><%= "age:         #{ @pet.age }"  %></li>
   <li><%= "color:       #{ @pet.color }"  %></li>
-  <li><%= "description: #{ @pet.description }"  %></li>
   <li><%= "animalID:    #{ @pet.animalID }"  %></li>
   <li><%= "orgID:       #{ @pet.orgID }"  %></li>
   <li><%= "videoUrl1:   #{ @pet.videoUrl1 }"  %></li>
@@ -21,9 +32,8 @@
   <li><%= "pic3:        #{ @pet.pic3 }"  %></li>
   <li><%= "pictmn3:     #{ @pet.pictmn3 }"  %></li>
   <li><%= "pic4:        #{ @pet.pic4 }"  %></li>
-  <li><%= "pictmn4:     #{ @pet.pictmn4 }"  %></li>
+  <li><%= "pictmn4:     #{ @pet.pictmn4 }"  %></li>ear
 
-  <li><%= "Favorited by #{ Pet.find(@pet.id).users.length } Users" %></li>
 </ul>
 <%= link_to "Back to the list", pets_path %>
 <br />
