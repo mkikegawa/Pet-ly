@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root 'static_pages#home'
   resources :users,    except: [:new]
-  resources :pets
+  resources :pets,     except: [:update]
   resources :sessions, only:   [:create]
   get '/about',      to: 'static_pages#about'
   get '/signup',     to: 'users#new'

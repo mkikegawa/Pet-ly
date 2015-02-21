@@ -10,10 +10,6 @@ class Pet < ActiveRecord::Base
     HTTParty.get "https://api.rescuegroups.org/rest/?#{ api_key }#{ term }"  
   end
 
-  def self.map_animalID_to_pet_id(pet)
-    Pet.find_by_animalID(pet.first['animalID']).id
-  end
-
   private
 
   def self.api_key
@@ -27,5 +23,6 @@ class Pet < ActiveRecord::Base
 
   
 end
+
 
 

@@ -20,40 +20,15 @@ class PetsController < ApplicationController
 
   def create
     @active = 'pets'
-    pet_result = Pet.search("type=animals&limit=30")['pets']['pet']
-    id_select = params.select do | k, v |
-      k.slice('animalID') == 'animalID'
-    end
-    id_select.each do |k , v| 
-      pet = pet_result.select do | result |
+    search_result = Pet.search("type=animals&limit=30")['pets']['pet']
+    pets_chosen(params).each do |k , v| 
+      pet = search_result.select do | result |
        result['animalID'] == v
       end
       if Pet.exists?(animalID: pet.first['animalID'])
         UserPet.find_or_create_by(user_id: @current_user.id, pet_id: map_animalID_to_pet_id(pet))  
       else 
-      pet_parsed = {
-          name:        pet.first['name'], 
-          summary:     pet.first['summary'], 
-          species:     pet.first['species'], 
-          breed:       pet.first['breed'], 
-          sex:         pet.first['sex'], 
-          age:         pet.first['age'], 
-          color:       pet.first['color'], 
-          description: pet.first['description'], 
-          animalID:    pet.first['animalID'],
-          orgID:       pet.first['orgID'], 
-          videoUrl1:   pet.first['videoUrl1'],
-          video1:      pet.first['video1'], 
-          pic1:        pet.first['pic1'],
-          pictmn1:     pet.first['pictmn1'],
-          pic2:        pet.first['pic2'],
-          pictmn2:     pet.first['pictmn2'],  
-          pic3:        pet.first['pic3'],
-          pictmn3:     pet.first['pictmn3'],  
-          pic4:        pet.first['pic4'],
-          pictmn4:     pet.first['pictmn4']  
-      }
-        @pet = User.find(@current_user.id).pets.create(pet_parsed)
+        User.find(@current_user.id).pets.create(pet_create_parse(pet))
       end
     end
     redirect_to user_path(@current_user.id), notice: 'Pet Matches are successfully recorded.'
@@ -63,25 +38,16 @@ class PetsController < ApplicationController
     @active = 'pets'
   end
 
-  def update
-    if @pet.update_attributes(pet_params)
-      flash[:success] = 'Pet updated.'
-      redirect_to pets_path(@pet.id)
-    else
-      render 'edit'
-    end
-  end
-
   def destroy
-    @pet.destroy
-    flash[:success] = 'Pet deleted.'
+    if current_user.admin?
+      @pet.destroy
+      flash[:success] = 'Pet deleted.'
+    else
+      @pet.user_pets.find_by_user_id(current_user).destroy
+      flash[:success] = 'Favorite deleted'
+    end 
     redirect_to pets_path
-
-  def destroy_match
-    match_with_user(@pet).destroy
-    flash[:success] = 'Favorite deleted'
-    redirect_to pets_path
-  end
+  end 
 
   private
 
@@ -94,7 +60,6 @@ class PetsController < ApplicationController
       redirect_to user_path(current_user)
     end
   end
-
 
 end
 
