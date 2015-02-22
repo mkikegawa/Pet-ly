@@ -9,11 +9,6 @@ describe PetsController, type: :controller do
       get :index
       expect(response).to render_template(:index)
     end
-
-    it 'populate an array of pets' do
-      get :index
-      expect(assigns(:pets)).to eq([pet1, pet2]) 
-    end  
   end
 
   describe 'GET #show' do

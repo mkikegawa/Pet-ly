@@ -18,9 +18,9 @@ FactoryGirl.define do
     species         { Faker::Lorem.word }
     breed           { Faker::Lorem.word }
     sex             { Faker::Lorem.word }
-    age             { Faker::Number.number(2) }
+    age             (1..12).to_a.sample
     color           { Faker::Lorem.word }
-    description     { Faker::Lorem.paragraph(2) }
+    description     { Faker::Lorem.sentence(2) }
     animalID        { Faker::Number.number(5) }
     orgID           { Faker::Number.number(4) }
     video1          { Faker::Internet.url('example.com', 'foorbar.html') }

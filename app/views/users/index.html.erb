@@ -3,6 +3,7 @@
 
 <ul>
   <% @users.each do | user | %>
+    <% render 'shared/error_messages', object: user.object %>
     <li>
       <%= link_to user.name, user_path(user.id) %>
     </li>      

@@ -1,10 +1,8 @@
  require 'rails_helper'
 
 describe User do
-  let(:user) { 
-    User.new(name: 'Martin Kikegawa', 
-          profile: 'I want a grey kitten') }
-
+  let(:user) { FactoryGirl.create(:user) }
+ 
   subject { user }
 
   it { should respond_to(:name) }

@@ -1,4 +1,4 @@
-<% provide(:title, 'Show Pet') %>
+<% provide(:title, @pet.name) %>
 <h1><%= @pet.name %></h1>
 <h3><%= "Favorited by #{ Pet.find(@pet.id).users.length } Users" %></h3>
 

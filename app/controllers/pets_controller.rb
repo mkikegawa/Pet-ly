@@ -1,7 +1,8 @@
 class PetsController < ApplicationController
   before_action :set_pet,        only:   [:show, :edit, :update, :destroy]
   before_action :signed_in_user, except: [:index, :show]
-  before_action :correct_user,   except: [:new, :create, :index, :show]
+  before_action :correct_user,   only:   [:edit, :destroy]
+  # except: [:new, :create, :index, :show]
   
   def index
     @active = 'pets'

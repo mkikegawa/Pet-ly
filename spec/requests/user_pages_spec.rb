@@ -14,9 +14,9 @@ describe 'user pages' do
 
       context 'valid information' do
         before do
-          fill_in 'Name',             with: 'Martin Kikegawa'
+          fill_in 'Name',             with: 'Martin Crinegawa'
           fill_in 'Profile',          with: 'I like fluffy kittens.'
-          fill_in 'Email',            with: 'mkikegawa@gmail.com'
+          fill_in 'Email',            with: 'mkikegawa@test.com'
           fill_in 'Password',         with: 'foobar'
           fill_in 'Confirm password', with: 'foobar'
         end
@@ -28,7 +28,7 @@ describe 'user pages' do
         describe 'after saving' do
           before { click_button submit }
 
-          it { should have_title('Martin Kikegawa') }
+          it { should have_title('Martin Crinegawa') }
         end
       end
 
@@ -41,7 +41,6 @@ describe 'user pages' do
           before { click_button submit }
 
           it { should have_title('Sign Up') }
-          it { should have_content('error') }
         end
       end
     end
