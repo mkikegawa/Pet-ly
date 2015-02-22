@@ -1,17 +1,37 @@
 <% provide(:title, 'Pet Index') %>
 <h1>Pet Index</h1>
 
-<ul>
+<div class='row index'>
   <% @pet.each do | pet | %>
-    <li>
-    <%= image_tag pet.pictmn1 %>  
-    <%= link_to pet.name, pet_path(pet.id) %>
-    <%= "  Species: #{ pet.species.capitalize }" %>
-    <%= "  Matches: #{ Pet.num_of_matches(pet) }  " %>
-    <% if current_user && current_user.admin? %>
-      <%= link_to 'delete', pet, method: :delete,
-      data: { confirm: 'Are you sure?' } %>
-    <% end %>
-    </li>
+    <div class='col-xs-offset-1 col-xs-10 col-sm-offset-1 col-sm-5'>
+      <div class='row grid'>
+        <div class='col-xs-4 col-sm-4 col-sm-4'>
+          <%= image_tag pet.pictmn1, class: 'text-center' %> 
+        </div> 
+        <div class='col-xs-offset-1 col-xs-6 col-sm-offset-1 col-sm-6'>
+          <%= link_to pet.name, pet_path(pet.id), class: 'text-center' %>
+          <br />
+          <span class='text-center'>
+            <%= "Species: #{ pet.species.capitalize }" %>
+          </span>
+          <br />
+          <% if Pet.num_of_matches(pet) > 0 %>
+            <br />
+            <span class='text-center'>
+              <%= "Matches: #{ Pet.num_of_matches(pet) }" %>
+            </span>
+            <span class="glyphicon glyphicon-heart" aria-hidden="true">
+            </span>
+          <% end %>
+          <br />
+          <br />
+        </div>
+      </div>
+    </div> 
   <% end %>
-</ul>
+
+</div>
+<% if current_user && current_user.admin? %>
+  <%= link_to 'delete', pet, method: :delete,
+  data: { confirm: 'Are you sure?' } %>
+<% end %> 
