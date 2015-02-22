@@ -1,13 +1,16 @@
+<% provide(:title, 'Select Favorite Pet') %>
+<h1>Select Favorite Pet</h1>
+
 <div>
-<%= form_for @pet, url: { controller: 'pets', action: 'create' } do %>  
-  <% @pet_search['pets']['pet'].each do |pet| %>
-  <%= "#{ pet['name'] }" %><br />
-  <img src="<%= pet['pic1'] %>" /><br />
-    <%= check_box_tag "animalID#{ pet['animalID']}", pet['animalID'] %>
+  <% form_for @pet, url: { controller: 'pets', action: 'create' } do %>  
+    <% @pet_search['pets']['pet'].each do |pet| %>
+      <%= "#{ pet['name'] }" %><br />
+      <img src="<%= pet['pic1'] %>" /><br />
+      <%= check_box_tag "animalID#{ pet['animalID']}", pet['animalID'] %>
+      <br />
+      <p><%= "Is on #{ Pet.num_of_matches(pet) } other favorite's list." %></p>
+    <% end %>
     <br />
-    <p><%= "Is on #{ Pet.num_of_matches(pet) } other favorite's list." %></p>
+    <%= submit_tag("Save selected matches to Favorites") %>
   <% end %>
-    <br />
-      <%= submit_tag("Save selected matches to Favorites") %>
-<% end %>
 </div>

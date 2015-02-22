@@ -1,9 +1,9 @@
 class UsersController < ApplicationController
-  before_action :signed_in_user,        only: [:edit, :update, :destroy]
+  before_action :signed_in_user,        only:   [:edit, :update, :destroy]
   before_action :set_user,              except: [:create, :index, :new]
-  before_action :correct_user,          only: [:edit, :update, :show]
-  before_action :redirect_if_signed_in, only: [:new, :create]
-  before_action :admin_user,            only: [:index, :destroy]
+  before_action :correct_user,          only:   [:edit, :update, :show, :destroy]
+  before_action :redirect_if_signed_in, only:   [:new, :create]
+  before_action :admin_user,            only:   [:index]
 
 
   def index 

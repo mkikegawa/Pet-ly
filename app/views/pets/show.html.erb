@@ -32,10 +32,9 @@
   <li><%= "pic3:        #{ @pet.pic3 }"  %></li>
   <li><%= "pictmn3:     #{ @pet.pictmn3 }"  %></li>
   <li><%= "pic4:        #{ @pet.pic4 }"  %></li>
-  <li><%= "pictmn4:     #{ @pet.pictmn4 }"  %></li>ear
+  <li><%= "pictmn4:     #{ @pet.pictmn4 }"  %></li>
 
 </ul>
-<%= link_to "Back to the profile", user_path(current_user) %>
 <br />
 <%= link_to 'delete', @pet, method: :delete,
       data: { confirm: 'Are you sure?' } %>

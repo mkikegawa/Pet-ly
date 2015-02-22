@@ -1,5 +1,5 @@
 class PetsController < ApplicationController
-  before_action :set_pet, only:          [:show, :edit, :update, :destroy]
+  before_action :set_pet,        only:   [:show, :edit, :update, :destroy]
   before_action :signed_in_user, except: [:index, :show]
   before_action :correct_user,   except: [:new, :create, :index, :show]
   
@@ -26,12 +26,14 @@ class PetsController < ApplicationController
        result['animalID'] == v
       end
       if Pet.exists?(animalID: pet.first['animalID'])
-        UserPet.find_or_create_by(user_id: @current_user.id, pet_id: map_animalID_to_pet_id(pet))  
+        UserPet.find_or_create_by(user_id: @current_user.id, 
+            pet_id: map_animalID_to_pet_id(pet))  
       else 
         User.find(@current_user.id).pets.create(pet_create_parse(pet))
       end
     end
-    redirect_to user_path(@current_user.id), notice: 'Pet Matches are successfully recorded.'
+    redirect_to user_path(@current_user.id), 
+        notice: 'Pet Matches are successfully recorded.'
   end
  
   def edit
@@ -43,8 +45,9 @@ class PetsController < ApplicationController
       @pet.destroy
       flash[:success] = 'Pet deleted.'
     else
-      @pet.user_pets.find_by_user_id(current_user).destroy
-      flash[:success] = 'Favorite deleted'
+      @pet.user_pets.find_by_user_id(current_user.id).destroy
+
+      flash[:success] = 'Favorite deleted'     
     end 
     redirect_to pets_path
   end 
@@ -56,7 +59,7 @@ class PetsController < ApplicationController
   end
 
   def correct_user
-    unless current_user?(@pet.users) || current_user.admin?
+    unless current_user(@pet.user) || current_user.admin?
       redirect_to user_path(current_user)
     end
   end
