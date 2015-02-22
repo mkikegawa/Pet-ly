@@ -21,7 +21,6 @@ class Pet < ActiveRecord::Base
     result ? result.users.length : 0
   end
 
-  
 end
 
 

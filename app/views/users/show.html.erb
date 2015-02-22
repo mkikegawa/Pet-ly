@@ -11,7 +11,7 @@
   <br />
 <% else %>
   <p><%= @user.profile %></p>
-  <p><%= "You have #{ User.find(@user).pets.length } Favorites" %></p>
+  <p><%= "You have #{ User.find(@user.id).pets.length } Favorites" %></p>
   <% User.find(@user.id).pets.each do | pet_match | %>
     <p>
       <%= link_to pet_match.name, pet_path(pet_match.id) %>
