@@ -1,0 +1,14 @@
+<% provide(:title, 'Sign In') %>
+<h1>Sign In</h1>
+<br />
+<%= form_for(:session, url: sessions_path) do |s| %>
+  <%= s.label :email %>
+  <%= s.text_field :email, autofocus: true %>
+
+  <br />
+  <%= s.label :password %>
+  <%= s.text_field :password %>
+
+  <br />
+  <%= s.submit 'Sign In' %>
+<% end %>

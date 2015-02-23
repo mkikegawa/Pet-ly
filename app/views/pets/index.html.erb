@@ -1,0 +1,33 @@
+<% provide(:title, 'Pet Adoption Index') %>
+<h1>Adoption Index</h1>
+
+<div class='row'>
+  <% @pet.each do | pet | %>
+    <div class='grey grid col-xs-12 col-sm-offset-1 col-sm-5'>
+      <div class='media'>
+        <div class='media-center'>
+          <%= image_tag pet.pictmn1, class: 'media-object' %> 
+        </div> 
+        <div class='media-body'>
+          <%= link_to pet.name, pet_path(pet.id), class: 'media-heading' %>
+          <br />
+            <%= "Species: #{ pet.species.capitalize }" %>
+          <br />
+          <% if Pet.num_of_matches(pet) > 0 %>
+            <br />
+              <%= "Matches: #{ Pet.num_of_matches(pet) }" %>
+            <span class="glyphicon glyphicon-heart" aria-hidden="true">
+            </span>
+          <% end %>
+          <br />
+          <br />
+          <% if current_user && current_user.admin? %>
+            <%= link_to 'delete', pet, method: :delete,
+            data: { confirm: 'Are you sure?' } %>
+          <% end %> 
+        </div>
+      </div>
+    </div> 
+  <% end %>
+
+</div>

@@ -1,0 +1,28 @@
+<%= form_for(@user) do | u | %>
+  <% render 'shared/error_messages', object: u.object %>
+  
+  <%= u.label :name %>
+  <%= u.text_field :name, autofocus: true %>
+
+  <br />
+  <%= u.label :profile %>
+  <%= u.text_field :profile %>
+
+  <br />
+  <%= u.label :email %>
+  <%= u.text_field :email %>
+
+  <br />
+  <%= u.label :password %>
+  <%= u.password_field :password %>
+
+  <br />
+  <%= u.label :password_confirmation, 'Confirm password' %>
+  <%= u.password_field :password_confirmation %>
+
+  <br />
+  <%= u.submit 'Save' %>
+<% end %>
+
+
+ 
