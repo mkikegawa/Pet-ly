@@ -128,10 +128,10 @@ describe UsersController, type: :controller do
 
   describe 'DELETE #destroy' do
     it 'redirects to index' do
-      user = FactoryGirl.create(:user)
-      sign_in user, no_capybara: true
+      admin = FactoryGirl.create(:admin)
+      sign_in admin, no_capybara: true
 
-      delete :destroy, id: user.id
+      delete :destroy, id: admin.id
       expect(response).to redirect_to(users_path)
     end
   end

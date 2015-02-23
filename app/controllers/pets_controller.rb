@@ -2,7 +2,6 @@ class PetsController < ApplicationController
   before_action :set_pet,        only:   [:show, :edit, :update, :destroy]
   before_action :signed_in_user, except: [:index, :show]
   before_action :correct_user,   only:   [:edit, :destroy]
-  # except: [:new, :create, :index, :show]
   
   def index
     @active = 'pets'
@@ -16,7 +15,7 @@ class PetsController < ApplicationController
   def new
     @active ='pets'
     @pet = Pet.new
-    @pet_search = Pet.search("type=animals&limit=10")
+    @pet_search = Pet.search("type=animals&limit=30")
   end
 
   def create
@@ -60,7 +59,7 @@ class PetsController < ApplicationController
   end
 
   def correct_user
-    unless current_user(@pet.user) || current_user.admin?
+    unless current_user || current_user.admin?
       redirect_to user_path(current_user)
     end
   end

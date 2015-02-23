@@ -7,9 +7,12 @@
 }
 
 .grid {
-  background-color: grey;
   margin-bottom: 10px;
   padding-top: 10px;
+}
+
+.grey {
+  background-color: grey;
 }
 
 .center {

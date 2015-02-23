@@ -3,13 +3,14 @@
 
 <ul>
   <% @users.each do | user | %>
-    <% render 'shared/error_messages', object: user.object %>
     <li>
-      <%= link_to user.name, user_path(user.id) %>
-    </li>      
+      <%= user.name %>
+        
     <% if !current_user?(user) && current_user.admin? %>
-      <li><%= link_to 'delete', user, method: :delete,
-          data: { confirm: 'Are you sure?' } %></li>
+
+      <%= link_to 'delete', user, method: :delete,
+          data: { confirm: 'Are you sure?' } %>
     <% end %>
+    </li>
   <% end %>
 </ul>

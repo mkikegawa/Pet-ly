@@ -2,20 +2,23 @@
 <h1><%= @pet.name %></h1>
 <h3><%= "Favorited by #{ Pet.find(@pet.id).users.length } Users" %></h3>
 
+
 <% if @pet.video1 %>
-  <%= "video1 : #{ @pet.video1 }"%>
+  <div class="embed-responsive embed-responsive-4by3">
+    <iframe class="embed-responsive-item" src="#{ @pet.video1 }"></iframe>
+  </div>
 <% elsif @pet.videoUrl1 %>
-  <%= "videoUrl1 : #{ @pet.videoUrl1 }"%>
+  <div class="embed-responsive embed-responsive-4by3">
+    <iframe class="embed-responsive-item" src="#{ @pet.videoUrl1 }"></iframe>
+  </div>
 <% else @pet.pic1 %>
-  <%= "pic1 : #{ @pet.pic1 }"%>
-  <br />
   <%= image_tag(@pet.pic1) %>
 <% end %>
+</div>
 <div>
 <%= h@pet.description.html_safe  %>
 </div>
 <ul>
-  <li><%= "summary:     #{ @pet.summary }"  %></li>
   <li><%= "species      #{ @pet.species }"  %></li>
   <li><%= "breed:       #{ @pet.breed }"  %></li>
   <li><%= "gender:      #{ @pet.sex }"  %></li>
